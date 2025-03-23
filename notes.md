@@ -1,8 +1,16 @@
 entidades:
 - match
     - id int
-    - 
+- event
+    - id
+    - match id
+    - when
+    - player id
+    - target id
+    - weapon id
 - player
+    - id
+    - nome
 
 - weapon (enum?)
 

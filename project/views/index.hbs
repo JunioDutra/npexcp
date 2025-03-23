@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+  </head>
+  <body>
+    <nav class="container">
+      <ul>
+        <li><strong>App</strong></li>
+      </ul>
+      <ul>
+        <li><a href="/" role="button" class="outline">Home</a></li>
+        <li><a href="/upload" role="button" class="outline">Upload</a></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <section>
+        {{#if events}}
+          <h2>Events</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Match ID</th>
+                <th>Action</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Weapon</th>
+                <th>How</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each events}}
+                <tr>
+                  <td>{{@index}}</td>
+                  <td>{{this.date}}</td>
+                  <td>{{this.time}}</td>
+                  <td>{{this.matchId}}</td>
+                  <td>{{this.action}}</td>
+                  <td>{{this.player1}}</td>
+                  <td>{{this.player2}}</td>
+                  <td>{{this.weapon}}</td>
+                  <td>{{this.how}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <p>No ranking data available. Please check back later.</p>
+        {{/if}}
+      </section>
+    </main>
+  </body>
+</html>
