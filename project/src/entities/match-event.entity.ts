@@ -1,4 +1,4 @@
-import { LogAction } from 'src/dtos';
+import { LogAction } from '../dtos';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { MatchEntity } from './match.entity';
 

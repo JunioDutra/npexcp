@@ -5,7 +5,7 @@ import {
   PlayerLogEvent,
   WorldLogEvent,
   Match,
-} from 'src/dtos';
+} from '../dtos';
 
 @Injectable()
 export class LogparserService {

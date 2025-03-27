@@ -7,9 +7,9 @@ import {
   LogAction,
   PlayerLogEvent,
   WorldLogEvent,
-} from 'src/dtos';
-import { MatchEventEntity } from 'src/entities/match-event.entity';
-import { MatchEntity } from 'src/entities/match.entity';
+} from '../dtos';
+import { MatchEventEntity } from '../entities/match-event.entity';
+import { MatchEntity } from '../entities/match.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

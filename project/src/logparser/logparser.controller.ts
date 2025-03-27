@@ -14,7 +14,7 @@ import {
 } from '@nestjs/swagger';
 import { LogparserService } from './logparser.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { MatchService } from 'src/match/match.service';
+import { MatchService } from '../match/match.service'; // Changed from 'src/match/match.service'
 
 @Controller('logparser')
 export class LogparserController {

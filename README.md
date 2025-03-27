@@ -55,6 +55,14 @@ PostgreSQL database will be accessible:
 
 ## Development
 
+### Testing
+
+1. Run the tests:
+   ```bash
+   cd app/project
+   yarn test
+   ```
+
 ### Local Development
 
 1. Install dependencies:
