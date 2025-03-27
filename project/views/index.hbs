@@ -1,85 +1,133 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>App</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="container">
-      <ul>
-        <li><strong>App</strong></li>
-      </ul>
-      <ul>
-        <li><a href="/" role="button" class="outline">Home</a></li>
-        <li><a href="/logparser/upload" role="button" class="outline">Upload</a></li>
-      </ul>
+        <ul>
+            <li><strong>App</strong></li>
+        </ul>
+        <ul>
+            <li><a href="/" role="button" class="outline">Home</a></li>
+            <li><a href="/logparser/upload" role="button" class="outline">Upload</a></li>
+        </ul>
     </nav>
     <main class="container">
-      <h2>Global Ranking</h2>
-      <section>
-        {{#if g_ranking}}
-          <table>
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Player</th>
-                <th>K/D</th>
-                <th>Pref. Weapon</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each g_ranking}}
-                <tr>
-                  <td>{{@index}}</td>
-                  <td>{{this.player}}</td>
-                  <td>{{this.k}}/{{this.d}}</td>
-                  <td>{{this.weapon}}</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        {{else}}
-          <p>No ranking data available. Please check back later.</p>
-        {{/if}}
-      </section>
-      <section>
-        {{#if events}}
-          {{#each events}}
-            <h2>{{this.id}}</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Position</th>
-                  <th>Match ID</th>
-                  <th>When</th>
-                  <th>Action</th>
-                  <th>Player 1</th>
-                  <th>Player 2</th>
-                  <th>Weapon</th>
-                  <th>How</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each this.events}}
-                  <tr>
-                    <td>{{@index}}</td>
-                    <td>{{this.matchId}}</td>
-                    <td>{{this.when}}</td>
-                    <td>{{this.action}}</td>
-                    <td>{{this.player1}}</td>
-                    <td>{{this.player2}}</td>
-                    <td>{{this.weapon}}</td>
-                    <td>{{this.how}}</td>
-                  </tr>
+        <form method="GET" action="/" id="match-filter-form">
+            <label for="match-select">Select Match:</label>
+            <select id="match-select" name="match" onchange="this.form.submit()">
+                <option value="">All</option>
+                {{#each allMatchIds}}
+                <option value="{{this}}" {{#if (eq ../selectedMatch this)}}selected{{/if}}>{{this}}</option>
                 {{/each}}
-              </tbody>
+            </select>
+        </form>
+
+        <h2>Ranking by Match</h2>
+        <section>
+            {{#if m_ranking}}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Player</th>
+                        <th>K/D</th>
+                        <th>Pref. Weapon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each m_ranking}}
+                    <tr>
+                        <td>{{@index}}</td>
+                        <td>{{this.player}}</td>
+                        <td>{{this.k}}/{{this.d}}</td>
+                        <td>{{this.weapon}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
-          {{/each}}
-        {{else}}
-          <p>No ranking data available. Please check back later.</p>
-        {{/if}}
-      </section>
+            {{else}}
+            <p>No ranking available for this match.</p>
+            {{/if}}
+        </section>
+
+        <h2>Global Ranking</h2>
+        <details name="globalRanking">
+            <section>
+                {{#if g_ranking}}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Player</th>
+                            <th>K/D</th>
+                            <th>Pref. Weapon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each g_ranking}}
+                        <tr>
+                            <td>{{@index}}</td>
+                            <td>{{this.player}}</td>
+                            <td>{{this.k}}/{{this.d}}</td>
+                            <td>{{this.weapon}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <p>No ranking data available. Please check back later.</p>
+                {{/if}}
+            </section>
+        </details>
+
+        <h2>All Events</h2>
+
+        <details name="AllEvents">
+            <section>
+                {{#if events}}
+                {{#each events}}
+                <h2>{{this.id}}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Match ID</th>
+                            <th>When</th>
+                            <th>Action</th>
+                            <th>Player 1</th>
+                            <th>Player 2</th>
+                            <th>Weapon</th>
+                            <th>How</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this.events}}
+                        <tr>
+                            <td>{{@index}}</td>
+                            <td>{{this.matchId}}</td>
+                            <td>{{this.when}}</td>
+                            <td>{{this.action}}</td>
+                            <td>{{this.player1}}</td>
+                            <td>{{this.player2}}</td>
+                            <td>{{this.weapon}}</td>
+                            <td>{{this.how}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/each}}
+                {{else}}
+                <p>No ranking data available. Please check back later.</p>
+                {{/if}}
+            </section>
+        </details>
     </main>
-  </body>
+</body>
+
 </html>

@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Query } from '@nestjs/common';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import { MatchService } from './match/match.service';
 
@@ -9,10 +9,19 @@ export class AppController {
   @Get()
   @Render('index')
   @ApiExcludeEndpoint()
-  async root() {
+  async root(@Query('match') match: string) {
+    const events = await this.matchService.findAllMatchs();
+    const g_ranking = await this.matchService.findGlobalStats();
+    const matchStatsById = match
+      ? await this.matchService.findMatchStatsById(Number(match))
+      : null;
+    const allMatchIds = events.map((e) => e.id);
     return {
-      events: await this.matchService.findAllMatchs(),
-      g_ranking: await this.matchService.findGlobalStats(),
+      events,
+      g_ranking,
+      m_ranking: matchStatsById?.stats,
+      selectedMatch: match || '',
+      allMatchIds,
     };
   }
 }
