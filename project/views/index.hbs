@@ -18,37 +18,37 @@
     <main class="container">
       <section>
         {{#if events}}
-          <h2>Events</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Match ID</th>
-                <th>Action</th>
-                <th>Player 1</th>
-                <th>Player 2</th>
-                <th>Weapon</th>
-                <th>How</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each events}}
+          {{#each events}}
+            <h2>{{this.id}}</h2>
+            <table>
+              <thead>
                 <tr>
-                  <td>{{@index}}</td>
-                  <td>{{this.date}}</td>
-                  <td>{{this.time}}</td>
-                  <td>{{this.matchId}}</td>
-                  <td>{{this.action}}</td>
-                  <td>{{this.player1}}</td>
-                  <td>{{this.player2}}</td>
-                  <td>{{this.weapon}}</td>
-                  <td>{{this.how}}</td>
+                  <th>Position</th>
+                  <th>Match ID</th>
+                  <th>When</th>
+                  <th>Action</th>
+                  <th>Player 1</th>
+                  <th>Player 2</th>
+                  <th>Weapon</th>
+                  <th>How</th>
                 </tr>
-              {{/each}}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {{#each this.events}}
+                  <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.matchId}}</td>
+                    <td>{{this.when}}</td>
+                    <td>{{this.action}}</td>
+                    <td>{{this.player1}}</td>
+                    <td>{{this.player2}}</td>
+                    <td>{{this.weapon}}</td>
+                    <td>{{this.how}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{/each}}
         {{else}}
           <p>No ranking data available. Please check back later.</p>
         {{/if}}
