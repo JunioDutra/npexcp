@@ -12,10 +12,37 @@
       </ul>
       <ul>
         <li><a href="/" role="button" class="outline">Home</a></li>
-        <li><a href="/upload" role="button" class="outline">Upload</a></li>
+        <li><a href="/logparser/upload" role="button" class="outline">Upload</a></li>
       </ul>
     </nav>
     <main class="container">
+      <h2>Global Ranking</h2>
+      <section>
+        {{#if g_ranking}}
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th>Player</th>
+                <th>K/D</th>
+                <th>Pref. Weapon</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each g_ranking}}
+                <tr>
+                  <td>{{@index}}</td>
+                  <td>{{this.player}}</td>
+                  <td>{{this.k}}/{{this.d}}</td>
+                  <td>{{this.weapon}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <p>No ranking data available. Please check back later.</p>
+        {{/if}}
+      </section>
       <section>
         {{#if events}}
           {{#each events}}
