@@ -12,6 +12,7 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
   hbs.registerHelper('eq', (a, b) => a === b);
+  hbs.registerHelper('add', (a: number, b: number): number => a + b);
 
   const config = new DocumentBuilder()
     .setTitle('FPS Log Parser')

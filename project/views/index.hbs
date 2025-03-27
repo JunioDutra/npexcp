@@ -43,7 +43,7 @@
                 <tbody>
                     {{#each m_ranking}}
                     <tr>
-                        <td>{{@index}}</td>
+                        <td>{{add @index 1}}</td>
                         <td>{{this.player}}</td>
                         <td>{{this.k}}/{{this.d}}</td>
                         <td>{{this.weapon}}</td>
@@ -72,7 +72,7 @@
                     <tbody>
                         {{#each g_ranking}}
                         <tr>
-                            <td>{{@index}}</td>
+                            <td>{{add @index 1}}</td>
                             <td>{{this.player}}</td>
                             <td>{{this.k}}/{{this.d}}</td>
                             <td>{{this.weapon}}</td>
@@ -109,7 +109,7 @@
                     <tbody>
                         {{#each this.events}}
                         <tr>
-                            <td>{{@index}}</td>
+                            <td>{{add @index 1}}</td>
                             <td>{{this.matchId}}</td>
                             <td>{{this.when}}</td>
                             <td>{{this.action}}</td>
