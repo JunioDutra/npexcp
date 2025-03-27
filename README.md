@@ -4,6 +4,15 @@
 
 This is a web application project that uses Node.js, TypeScript, and PostgreSQL.
 
+## Next Steps
+
+- [ ] Add Authentication with openid like
+
+### Create the extra cases
+- [ ] Identificar a maior sequência de frags efetuadas por um jogador (streak) sem morrer, dentro da partida;
+- [ ] Jogadores que vencerem uma partida sem morrerem devem ganhar um "award";
+- [ ] Jogadores que matarem 5 vezes em 1 minuto devem ganhar um "award";
+
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/)

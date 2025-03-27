@@ -25,19 +25,3 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-  
-  # keycloak:
-  #   image: quay.io/keycloak/keycloak:26.1.0
-  #   ports:
-  #     - 8080:8080
-  #   volumes:
-  #     - ./resources/keycloak:/opt/keycloak/data/import/
-  #   environment:
-  #     KC_DB: postgres
-  #     KC_DB_URL: jdbc:postgresql://database:5432/dev
-  #     KC_DB_USERNAME: dev
-  #     KC_DB_PASSWORD: dev
-  #     KC_DB_SCHEMA: keycloak
-  #   command: start-dev --import-realm
-  #   depends_on:
-  #     - flyway
